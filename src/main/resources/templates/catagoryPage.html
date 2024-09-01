@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-4">Categories</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form th:action="@{/finance/category}" th:object="${category}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Category Name:</label>
+                    <input type="text" id="name" class="form-control" th:field="*{name}" required>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add Category</button>
+            </form>
+            <p th:text="${message}" class="mt-3 text-success"></p>
+            <h2 class="mt-4">Your Categories</h2>
+            <ul class="list-group">
+                <li th:each="category : ${categories}" th:text="${category.name}" class="list-group-item"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

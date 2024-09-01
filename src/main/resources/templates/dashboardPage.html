@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-4">Dashboard</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>Your Transactions</h2>
+            <table class="table table-striped">
+                <thead class="table-dark">
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="transaction : ${transactions}">
+                    <td th:text="${transaction.description}"></td>
+                    <td th:text="${transaction.amount}"></td>
+                    <td th:text="${transaction.date}"></td>
+                    <td th:text="${transaction.category.name}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="mt-4">
+                <h3>Summary</h3>
+                <p>Total Income: <span th:text="${totalIncome}"></span></p>
+                <p>Total Expenses: <span th:text="${totalExpense}"></span></p>
+            </div>
+            <a th:href="@{/finance/addtransaction}" class="btn btn-primary">Add New Transaction</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
